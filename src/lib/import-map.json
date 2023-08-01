@@ -1,0 +1,10 @@
+{
+  "imports": {
+    "bpmn-js/lib/Modeler.js": "./bpmn-js/lib/Modeler.js",
+    "bpmn-js/lib/features/palette/PaletteProvider.js": "./bpmn-js/lib/features/palette/PaletteProvider.js",
+    "bpmn-js/lib/util/ModelUtil.js": "./bpmn-js/lib/util/ModelUtil.js",
+    "diagram-js-grid/dist/index.esm.js": "./diagram-js-grid/dist/index.esm.js",
+    "diagram-js/lib/draw/BaseRenderer.js": "./diagram-js/lib/draw/BaseRenderer.js",
+    "diagram-js/lib/features/grid-snapping/GridSnapping.js": "./diagram-js/lib/features/grid-snapping/GridSnapping.js"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "bpmn-js-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/AppMain.js",
+  "scripts": {
+    "postinstall": "snowpack --clean --include './src/AppMain.js' --dest './src/lib/'",
+    "start": "browser-sync src -f src --cors --no-notify --single"
+  },
+  "dependencies": {
+    "bpmn-js": "^13.2.2",
+    "diagram-js": "^12.2.0",
+    "diagram-js-grid": "^0.2.0"
+  },
+  "devDependencies": {
+    "snowpack": "^1.7.1",
+    "browser-sync": "^2.29.3"
+  },
+  "snowpack": {
+    "webDependencies": [
+      "bpmn-js/lib/Modeler.js",
+      "bpmn-js/lib/util/ModelUtil.js",
+      "bpmn-js/lib/features/palette/PaletteProvider.js",
+      "diagram-js/lib/draw/BaseRenderer.js",
+      "diagram-js/lib/features/grid-snapping/GridSnapping.js",
+      "diagram-js-grid/dist/index.esm.js"
+    ],
+    "dedupe": [
+    ]
+  }
+}

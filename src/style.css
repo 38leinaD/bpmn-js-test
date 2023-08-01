@@ -1,0 +1,12 @@
+app-main {
+    display: block;
+
+    height: 100dvh;
+    width: 100dvw;
+}
+
+body {
+    width: 100dvw;
+    height: 100dvh;
+    margin: 0;
+}

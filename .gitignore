@@ -1,0 +1,8 @@
+/build/
+/dist
+*.jar
+*.iml
+.idea
+node_modules
+web_modules
+/cypress

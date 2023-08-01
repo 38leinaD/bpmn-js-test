@@ -1,0 +1,79 @@
+import BpmnModeler from '../lib/bpmn-js/lib/Modeler.js';
+import gridSnapping from "../lib/diagram-js/lib/features/grid-snapping/GridSnapping.js";
+import gridModule from '../lib/diagram-js-grid/dist/index.esm.js';
+
+export default class AppMain extends HTMLElement {
+
+    async connectedCallback() {
+        this.modeler = new BpmnModeler({
+            container: this,
+            width: "100%",
+            height: "100%",
+            keyboard: { bindTo: document },
+            additionalModules: [
+                gridModule,
+                gridSnapping
+            ],
+            //taskResizingEnabled: true
+        });
+
+        try {
+        await this.modeler.importXML(`<?xml version="1.0" encoding="UTF-8"?>
+            <bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xs="http://www.w3.org/2001/XMLSchema" id="Definitions_1" targetNamespace="http://org.eclipse.bpmn2/default/process" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.5.4.RC1-v20220528-0836-B1">
+              <bpmn2:process id="test" name="Default Process" isExecutable="false">
+                <bpmn2:startEvent id="StartEvent_1">
+                  <bpmn2:outgoing>SequenceFlow_13</bpmn2:outgoing>
+                </bpmn2:startEvent>
+                <bpmn2:endEvent id="EndEvent_1">
+                  <bpmn2:incoming>SequenceFlow_14</bpmn2:incoming>
+                </bpmn2:endEvent>
+                <bpmn2:serviceTask id="ServiceTask_17" name="Test Service">
+                  <bpmn2:incoming>SequenceFlow_13</bpmn2:incoming>
+                  <bpmn2:outgoing>SequenceFlow_14</bpmn2:outgoing>
+                </bpmn2:serviceTask>
+                <bpmn2:sequenceFlow id="SequenceFlow_13" sourceRef="StartEvent_1" targetRef="ServiceTask_17" />
+                <bpmn2:sequenceFlow id="SequenceFlow_14" sourceRef="ServiceTask_17" targetRef="EndEvent_1" />
+              </bpmn2:process>
+              <bpmndi:BPMNDiagram id="BPMNDiagram_1" name="Default Process Diagram">
+                <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="test">
+                  <bpmndi:BPMNShape id="BPMNShape_1" bpmnElement="StartEvent_1">
+                    <dc:Bounds x="96" y="0" width="36" height="36" />
+                    <bpmndi:BPMNLabel id="BPMNLabel_1" labelStyle="BPMNLabelStyle_1" />
+                  </bpmndi:BPMNShape>
+                  <bpmndi:BPMNShape id="BPMNShape_2" bpmnElement="EndEvent_1">
+                    <dc:Bounds x="96" y="192" width="36" height="36" />
+                    <bpmndi:BPMNLabel id="BPMNLabel_2" labelStyle="BPMNLabelStyle_1" />
+                  </bpmndi:BPMNShape>
+                  <bpmndi:BPMNShape id="BPMNShape_ServiceTask_17" bpmnElement="ServiceTask_17" isExpanded="true">
+                    <dc:Bounds x="59" y="85" width="110" height="50" />
+                    <bpmndi:BPMNLabel id="BPMNLabel_33" labelStyle="BPMNLabelStyle_1">
+                      <dc:Bounds x="72" y="96" width="84" height="28" />
+                    </bpmndi:BPMNLabel>
+                  </bpmndi:BPMNShape>
+                  <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_15" bpmnElement="SequenceFlow_13" sourceElement="BPMNShape_1" targetElement="BPMNShape_ServiceTask_17">
+                    <di:waypoint x="114" y="36" />
+                    <di:waypoint x="114" y="85" />
+                    <bpmndi:BPMNLabel id="BPMNLabel_35" />
+                  </bpmndi:BPMNEdge>
+                  <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_16" bpmnElement="SequenceFlow_14" sourceElement="BPMNShape_ServiceTask_17" targetElement="BPMNShape_2">
+                    <di:waypoint x="114" y="135" />
+                    <di:waypoint x="114" y="192" />
+                    <bpmndi:BPMNLabel id="BPMNLabel_36" />
+                  </bpmndi:BPMNEdge>
+                </bpmndi:BPMNPlane>
+                <bpmndi:BPMNLabelStyle id="BPMNLabelStyle_1">
+                  <dc:Font name="arial" size="9" />
+                </bpmndi:BPMNLabelStyle>
+              </bpmndi:BPMNDiagram>
+            </bpmn2:definitions>
+            `);
+        }
+        catch (err) {
+            alert(err);
+        }
+
+    }
+
+}
+
+customElements.define('app-main', AppMain);
